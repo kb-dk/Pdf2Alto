@@ -7,4 +7,6 @@ TestCreateAlto.java and TestCreateOverlayPdf.java
 
 In these tests change the file path to a PDF file.
 
-Thomas Egense
+## Contact
+Developed by Thomas Egense (thomas.egense@gmail.com) 
+Feel free to send emails with comments and questions.
