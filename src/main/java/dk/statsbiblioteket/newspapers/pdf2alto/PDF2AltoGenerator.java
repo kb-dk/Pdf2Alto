@@ -39,9 +39,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- * This code is but ugly, but is a prototype to try to extract text with positions from PDF's using PDFBox
- * Don't read this code and try to understand it. The superclass is high complicated.
- * IMPORTANT: Use of this class can not be multithreaded due to static variables.   
+ * This code is not pretty, but is a prototype to try to extract text with positions from PDF's using PDFBox 
+ * IMPORTANT: Use of this class can not be multithreaded due to static variables.
+ * This is due to the limits of the supermethods from PDFBox. Some variables need to set. 
  */
 public class PDF2AltoGenerator extends PDFTextStripper
 {
