@@ -6,11 +6,11 @@ public class TestCreateAlto {
     try{
     
     //change this path of a PDF file
-    String pdfInputFile= "pdfs/20170102_aarhusstiftstidende_section01_page001_ast20170102x11#0001.pdf";
-    String altoFile = "target/alto.xml"; //will create this file
+    String pdfInputFile= "/media/teg/500GB/ALTO-test/130019436056_bw.pdf";
+    String altoFile = "/media/teg/500GB/ALTO-test/13130019436056_bw.xml"; //will create this file
     
     
-    PDF2AltoGenerator.makeAlto(pdfInputFile, altoFile, "20170408_aarhusstiftstidende.jp2", 1);
+    PDF2AltoGenerator.makeAlto(pdfInputFile, altoFile, "(none)", 1);
     }
     catch(Exception e){
       e.printStackTrace();

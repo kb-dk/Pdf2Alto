@@ -5,10 +5,11 @@ public class TestCreateOverlayPdf {
   
   public static void main(String[] args){
     
+    
     try{      
       //change this path of a PDF file
-      String pdfInputFile = "pdfs/20170102_aarhusstiftstidende_section01_page001_ast20170102x11#0001.pdf";
-      String pdfOverlayFile = "target/overlay.pdf";
+      String pdfInputFile = "/media/teg/500GB/ALTO-test/130019436056_bw.pdf";
+      String pdfOverlayFile = "/media/teg/500GB/ALTO-test/130019436056_bw_overlay.pdf";
             
       PDF2AltoGenerator.makePdfOverlay(pdfInputFile, pdfOverlayFile);
       }

@@ -177,9 +177,9 @@ public class PDF2AltoGenerator extends PDFTextStripper
               "\" WIDTH=\""   + width  +
               "\" HPOS=\""    + hpos   +
               "\" VPOS=\""    + vpos   +
-              "\" CONTENT=\"" + word.toString().trim() +
-              "\" CC=\""    + get9sForCC(word.toString().trim()) +"\""+                
-              "/>" );
+              "\" CONTENT=\"" + word.toString().trim() +"\""
+              //+ "\" CC=\""    + get9sForCC(word.toString().trim()) +"\""                
+              +"/>" );
         }
       }
       word = new StringBuffer("");
@@ -204,7 +204,7 @@ public class PDF2AltoGenerator extends PDFTextStripper
 
     protected void processTextPosition(TextPosition text, MarginOffset offset)
     {
-      Character current_character = text.getCharacter().toLowerCase().charAt(0);
+      Character current_character = text.getCharacter().charAt(0);
       setOffset(offset);
 
 
@@ -352,11 +352,23 @@ public class PDF2AltoGenerator extends PDFTextStripper
       }
       PDF2AltoGenerator printer = new PDF2AltoGenerator();
       List allPages = document.getDocumentCatalog().getAllPages();
-      appendXml( "<?xml version=\"1.0\" encoding=\"UTF-8\"?><alto xmlns=\"http://www.loc.gov/standards/alto/alto-v2.0.xsd\">" );
+      appendXml("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");         
+   
+      
+      appendXml("<alto xmlns=\"http://www.loc.gov/standards/alto/ns-v2#\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.loc.gov/standards/alto/ns-v2# http://www.loc.gov/standards/alto/alto-v2.0.xsd\">");
+      //appendXml("<alto xmlns=\"http://www.loc.gov/standards/alto/alto-v2.0.xsd\">");
+      appendXml("<Description>");
+      appendXml("<MeasurementUnit>inch1200</MeasurementUnit>");        
+      appendXml("<sourceImageInformation>");        
+      appendXml("<fileName>"+jp2FileName+"</fileName>"); //TODO
+      appendXml("</sourceImageInformation>");
+      appendXml("</Description>");
+      appendXml( "<Layout>" );
       for( int i=0; i<allPages.size(); i++ )
+     // for( int i=0; i<1; i++ )
       {
         currentPage=i;
-
+System.out.println("page:"+i);
         PDPage page = (PDPage)allPages.get( currentPage);
 
         if (page.getCropBox() != null) {
@@ -369,17 +381,10 @@ public class PDF2AltoGenerator extends PDFTextStripper
         }
 
 
-        appendXml("<Description>");
-        appendXml("<MeasurementUnit>inch1200</MeasurementUnit>");        
-        appendXml("<sourceImageInformation>");        
-        appendXml("<fileName>"+jp2FileName+"</fileName>"); //TODO
-        appendXml("</sourceImageInformation>");
-        appendXml("</Description>");
-        appendXml( "<Layout>" );
-        appendXml( "<Page ID=\"P"+pageNumber+"\" PHYSICAL_IMG_NR=\""+pageNumber+"\">" );
-        appendXml( "<PrintSpace>" );
-        appendXml( "<TextBlock>" );
-        appendXml( "<TextLine>" );
+        appendXml( "<Page ID=\"Page"+ currentPage+"\" PHYSICAL_IMG_NR=\""+ currentPage+"\">" );
+        appendXml( "<PrintSpace  HEIGHT=\"5251\" WIDTH=\"3404\" VPOS=\"227\" HPOS=\"224\">" );
+        appendXml( "<TextBlock ID=\"Page"+i+"_Block1\" HEIGHT=\"530\" WIDTH=\"656\" VPOS=\"448\" HPOS=\"224\">" );
+        appendXml( "<TextLine HEIGHT=\"86\" WIDTH=\"611\" VPOS=\"466\" HPOS=\"242\" >" );
         PDStream contents = page.getContents();
         if( contents != null )
         {
