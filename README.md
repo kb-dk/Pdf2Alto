@@ -1,5 +1,5 @@
 # Project has been deleted
-Instead I recommend using this project:  https://github.com/cokernel/pdf2alto
+Instead I recommend using this project: https://github.com/kermitt2/pdfalto
 This implementation generates much richer ALTO information. (Currently  ALTO v.3.1)
 
 ## Contact
